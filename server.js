@@ -5,7 +5,7 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 
 // Connect DB
-const connectDB = require('./db/db');
+const connectDB = require('./config/db');   // <- INI YANG BENAR!
 
 const app = express();
 
@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
+// Connect to DATABASE
 connectDB();
 
 // Routes
@@ -21,16 +21,12 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 
 // Swagger
-const swaggerDocument = YAML.load(__dirname + '/swagger.yaml');
+const swaggerDocument = YAML.load('./swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Render requires this to respond for health checks
-app.get('/', (req, res) => {
-  res.send("GoKin Backend is running...");
-});
-
-// Server
+// PORT for Render
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
