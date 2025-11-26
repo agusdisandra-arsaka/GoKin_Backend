@@ -1,9 +1,10 @@
-GoKin Backend (with Swagger)
+# GoKin Backend
 
-How to use:
+Backend API untuk aplikasi GoKin (Laundry, Barber, Salon, MUA, dan Cuci Kendaraan).
 
-1. extract this ZIP into your backend folder
-2. create a .env file (see .env.example)
-3. run `npm install`
-4. run `npm run dev` (requires nodemon) or `npm start`
-5. Swagger UI is available at http://localhost:4000/api-docs
+## Cara Menggunakan
+
+1. Extract ZIP ke folder backend Anda
+2. Buat file `.env` (lihat contoh di `.env.example`)
+3. Jalankan:
+
