@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: GoKin Backend API
+  version: 1.0.0
+  description: Minimal API for GoKin with auth and users (admin)
+servers:
+  - url: http://localhost:4000
+paths:
+  /api/auth/register:
+    post:
+      summary: Register user (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: Registered
+  /api/auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: Token
+  /api/users:
+    get:
+      summary: Get all users (admin)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of users
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
